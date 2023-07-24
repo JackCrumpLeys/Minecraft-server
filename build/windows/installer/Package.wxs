@@ -3,7 +3,7 @@
     <Package
         Name="BevyGame"
         Manufacturer="My Name"
-        UpgradeCode="132bb59d-de4f-4893-a535-93dfd0597731"
+        UpgradeCode="31173e71-38ba-44a9-95e9-dcd217104c0d"
         Version="0.1.0"
 
         Scope="perUserOrMachine">
@@ -35,7 +35,7 @@
         <!-- Installs the actual files -->
         <ComponentGroup Id="MainComponent" Directory="INSTALLFOLDER">
             <Component>
-                <File Id="Executable" Source="..\..\..\target\release\bevy_game.exe" Vital="true" />  <!-- ToDo this should point to your executable -->
+                <File Id="Executable" Source="..\..\..\target\release\mc-server.exe" Vital="true" />
             </Component>
         </ComponentGroup>
 
