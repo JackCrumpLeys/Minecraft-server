@@ -21,14 +21,12 @@ codegen-units = 1
 inherits = "release"
 lto = "thin"
 
-[features]
-dev = [
-    "bevy/bevy_dylib",
-]
-
 [dependencies]
-bevy = { version = "0.11" }
-valence = { git = "https://github.com/valence-rs/valence" }
+valence = { git = "https://github.com/valence-rs/valence"}
+rand = "0.8"
+surrealdb = "1.0.0-beta.9+20230402"
+tokio = "1.29.1"
+serde = "1.0.171"
 
 [build-dependencies]
 embed-resource = "1.4"
