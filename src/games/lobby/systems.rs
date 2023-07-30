@@ -14,7 +14,7 @@ pub fn setup_chest_inventory(
         "Extra".italic() + " Chesty".not_italic().bold().color(Color::RED) + " Chest".not_italic(),
     );
 
-    let slot_count = inventory.slots().len().clone();
+    let slot_count = inventory.slots().len();
 
     for i in 0..slot_count {
         inventory.set_slot(i as u16, ItemStack::new(ItemKind::Stone, 1, None));
@@ -62,7 +62,7 @@ pub fn toggle_gamemode_on_sneak(
 
 pub fn slot_click_handler(
     mut events: EventReader<ClickSlotEvent>,
-    mut inventories: Query<&mut Inventory, With<Menu>>,
+    _inventories: Query<&mut Inventory, With<Menu>>,
 ) {
     for event in events.iter() {
         println!("Slot click event: {:#?}", event);

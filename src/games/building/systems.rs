@@ -6,7 +6,6 @@ use valence::inventory::HeldItem;
 use valence::prelude::*;
 use crate::games::building::{BuildingClient, BuildingInstance};
 use crate::item_helpers::is_spawn_egg;
-use crate::PlayerJoinEvent;
 
 pub(crate) fn place_blocks(
     mut clients: Query<(&mut Inventory, &GameMode, &HeldItem), With<BuildingClient>>,
@@ -120,11 +119,3 @@ pub(crate) fn digging(
     }
 }
 
-pub(crate) fn spawn_player(
-    mut instances: Query<&mut Instance, With<BuildingInstance>>,
-    mut events: EventReader<PlayerJoinEvent>,
-) {
-    for mut instance in instances.iter_mut() {
-        // TODO: spawn player at spawn
-    }
-}

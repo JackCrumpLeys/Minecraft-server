@@ -20,11 +20,7 @@ impl BuildingGame {
         Self
     }
 
-    pub(crate) fn instance_marker(&self) -> BuildingClient {
-        BuildingClient
-    }
-
-    fn client_marker(&self) -> BuildingInstance {
+    pub(crate) fn instance_marker(&self) -> BuildingInstance {
         BuildingInstance
     }
 }
@@ -64,7 +60,7 @@ impl Game for BuildingGame {
         }
     }
 
-    fn spawn_player_location(player: Player) -> [f64; 3] {
+    fn spawn_player_location(_player: Player) -> [f64; 3] {
         [0.0, SPAWN_Y as f64 + 1.0, 0.0]
     }
 }

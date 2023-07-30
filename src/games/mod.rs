@@ -1,4 +1,4 @@
-use valence::ecs::component::TableStorage;
+
 use valence::prelude::*;
 use crate::db::player::Player;
 

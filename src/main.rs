@@ -17,24 +17,12 @@ use crate::games::building::BuildingGame;
 use crate::games::{Game, Games};
 use crate::games::lobby::{LobbyGame, LobbyInstance};
 
-#[derive(Debug, Clone, Event)]
-struct PlayerJoinEvent {
-    client: Entity,
-    instance: Entity,
-    player: Player,
-}
 
 #[derive(Debug, Clone, Component)]
 struct GameIdentifier(String);
 
 #[derive(Resource)]
 struct GamesRunning(Vec<Games>);
-
-impl GamesRunning {
-    fn get_game(&self, game_to_find: Games) -> Option<&Games> {
-        self.0.iter().find(|game| matches!(game, game_to_find))
-    }
-}
 
 fn main() {
     let runtime = tokio::runtime::Builder::new_current_thread()
@@ -48,7 +36,7 @@ fn main() {
         .add_systems(Startup, setup)
         .add_systems(Update, (init_clients, despawn_disconnected_clients))
         .insert_resource(DB {
-            runtime: runtime,
+            runtime,
             db: None,
         })
         .run();
@@ -110,7 +98,7 @@ fn init_clients(
         .connect(false)
         .expect("Failed to connect to database");
     for (entity, mut client, mut location, mut pos, uuid, username) in &mut clients {
-        match db_res.block_on(async {
+        if let Err(err) = db_res.block_on(async {
             let _db = match db_res.db.as_ref() {
                 Some(db) => db,
                 None => return Err(surrealdb::Error::Api(ConnectionUninitialised)),
@@ -155,10 +143,7 @@ fn init_clients(
                 }
             }
         }) {
-            Err(err) => {
-                db_res.handle_error(err).expect("failed to handle error");
-            }
-            _ => {}
+            db_res.handle_error(err).expect("failed to handle error");
         };
     }
 }

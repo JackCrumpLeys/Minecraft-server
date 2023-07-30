@@ -24,7 +24,7 @@ lto = "thin"
 [dependencies]
 valence = { git = "https://github.com/valence-rs/valence"}
 rand = "0.8"
-surrealdb = "1.0.0-beta.9+20230402"
+surrealdb = "1.0.0-beta.9"
 tokio = "1.29.1"
 serde = "1.0.171"
 

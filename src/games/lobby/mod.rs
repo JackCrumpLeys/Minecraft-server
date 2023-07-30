@@ -68,7 +68,7 @@ impl Game for LobbyGame {
         instance.set_block(CHEST_POS, BlockState::CHEST);
     }
 
-    fn spawn_player_location(player: Player) -> [f64; 3] {
+    fn spawn_player_location(_player: Player) -> [f64; 3] {
         [0.0, SPAWN_Y as f64 + 1.0, 0.0]
     }
 }

@@ -48,11 +48,6 @@ impl DB {
         Ok(())
     }
 
-    pub fn get_db(&mut self) -> surrealdb::Result<&Surreal<ws::Client>> {
-        self.connect(false)?;
-        Ok(self.db.as_ref().unwrap())
-    }
-
     // try restarting the connection
     pub(crate) fn handle_error(&mut self, err: surrealdb::Error) -> surrealdb::Result<()> {
         warn!("Db Error: {:?}", err);
@@ -60,7 +55,7 @@ impl DB {
 
         for i in 0..5 {
             warn!("Attempt {}...", i + 1);
-            if let Ok(_) = self.connect(true) {
+            if self.connect(true).is_ok() {
                 return Ok(());
             }
         }
